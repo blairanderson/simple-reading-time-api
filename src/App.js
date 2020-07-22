@@ -39,14 +39,24 @@ export default function App() {
         </Row>
         <Row>
           <Col>
-            <h1>Reading Time: {readingTime.text}</h1>
+            <h1 className="mt-3">Reading Time: {readingTime.text}</h1>
             {readingTime.text && (
-              <textarea
-                className="form-control"
-                readOnly
-                rows={6}
-                value={JSON.stringify(readingTime, null, 4)}
-              />
+              <>
+                <textarea
+                  className="mt-3 form-control"
+                  readOnly
+                  rows={6}
+                  value={JSON.stringify(readingTime, null, 4)}
+                />
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://readingtimeapi.netlify.app/.netlify/functions/reading-time?text=${text}`}
+                  className="d-block mt-3 btn btn-lg btn-outline-primary"
+                >
+                  Try The API
+                </a>
+              </>
             )}
           </Col>
         </Row>
