@@ -1,12 +1,18 @@
 // this uses the callback syntax, however, we encourage you to try the async/await syntax shown in async-dadjoke.js
-export function handler(event, context, callback) {
+exports.handler = function handler(event, context, callback) {
   const { text, options } = event.queryStringParameters;
+  if (text === "") {
+    callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Missing 'text' parameter" })
+    });
+  }
 
   callback(null, {
     statusCode: 200,
     body: JSON.stringify(readingTime(text, options))
   });
-}
+};
 
 function ansiWordBound(c) {
   return " " === c || "\n" === c || "\r" === c || "\t" === c;
