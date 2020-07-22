@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import ReadingTime from "../functions/reading-time";
+import ReadingTime from "./reading-time";
 
 export default function App() {
   const [readingSpeed, changeReadingSpeed] = React.useState(200);
