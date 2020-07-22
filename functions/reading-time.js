@@ -56,5 +56,3 @@ function readingTime(text, options) {
     words: words
   };
 }
-
-export default readingTime;
