@@ -1,12 +1,14 @@
 import React from "react";
 import "./styles.css";
+import ReadingTime from "../functions/reading-time";
 
 export default function App() {
   const [readingSpeed, changeReadingSpeed] = React.useState(200);
   const [text, changeText] = React.useState(
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
   );
-  const readingTime = 12;
+
+  const readingTime = ReadingTime(text);
 
   return (
     <div className="App">
@@ -16,7 +18,9 @@ export default function App() {
       <Container>
         <Row>
           <Col>
+            <label htmlFor="input-text">Input Text</label>
             <textarea
+              id="input-text"
               className="form-control"
               value={text}
               onChange={e => changeText(e.target.value)}
@@ -34,7 +38,17 @@ export default function App() {
           </Col>
         </Row>
         <Row>
-          <Col>Reading Time {readingTime}</Col>
+          <Col>
+            <h1>Reading Time: {readingTime.text} Seconds</h1>
+            {readingTime.text && (
+              <textarea
+                className="form-control"
+                readOnly
+                rows={6}
+                value={JSON.stringify(readingTime, null, 4)}
+              />
+            )}
+          </Col>
         </Row>
       </Container>
     </div>
